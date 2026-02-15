@@ -25,6 +25,9 @@ uv run pre-commit run
 
 # run hooks on all files
 uv run pre-commit run --all-files
+
+# update the hooks version
+uv run pre-commit autoupdate
 ```
 
 ## Automated tests
