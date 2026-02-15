@@ -1,0 +1,20 @@
+[project]
+name = "sample-python-semantic-release"
+version = "0.0.0"
+description = "A sample python library project with Github actions workflows automating the publication of a new version in PyPI (in test PyPI, to keep PyPI sane)"
+readme = "README.md"
+requires-python = ">=3.14.3"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+]
+
+[tool.pytest.ini_options]
+console_output_style = "count"
+
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
