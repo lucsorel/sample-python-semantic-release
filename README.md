@@ -12,6 +12,21 @@ Expected behavior when merging a PR on the `main` branch:
   - apply a tag corresponding to the new version
   - if the commits lead to a new version, deploy on test-PyPI (to not pollute the PyPI repo with junk code)
 
+## Code linting
+
+Configured by pre-commit hooks
+
+```sh
+# install pre-commit hooks on the repo (once for all)
+uv run pre-commit install
+
+# run hooks on staged files
+uv run pre-commit run
+
+# run hooks on all files
+uv run pre-commit run --all-files
+```
+
 ## Automated tests
 
 ```sh
@@ -25,5 +40,5 @@ uv run pytest -v --cov=sample_python_semantic_release --cov-branch --cov-report 
 ## How the python project was initialized
 
 ```sh
-uv init --lib --no-workspace --python 3.14.3 --name sample-python-semantic-release 
+uv init --lib --no-workspace --python 3.14.3 --name sample-python-semantic-release
 ```

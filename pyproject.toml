@@ -11,9 +11,59 @@ dev = [
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
 ]
+lint = [
+    "pre-commit>=4.5.1",
+]
+
+[tool.uv]
+default-groups = ["dev", "lint"]
 
 [tool.pytest.ini_options]
 console_output_style = "count"
+
+[tool.isort]
+py_version=314
+# maintain consistency with other quality tools
+line_length = 120
+# consistency with ruff-format: mode 3
+# from third_party import (
+#     lib1,
+#     lib2,
+#     [...]
+#     libn,
+# )
+multi_line_output = 3
+include_trailing_comma = true
+# TESTS->known_tests: create a specific section for imports of tests modules
+# (this is the reason why isort is still used alongside ruff-format)
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER", "TESTS"]
+known_tests = ["tests"]
+
+[tool.ruff]
+target-version = "py314"
+# maintain consistency with other quality tools
+line-length = 120
+# automatically fixes when possible
+fix = true
+
+[tool.ruff.format]
+indent-style = "space"
+line-ending = "lf"
+quote-style = "single"
+
+[tool.ruff.lint]
+# activated families of verifications (https://beta.ruff.rs/docs/rules/
+select = ["B", "E", "F", "W", "N", "SIM", "C4"]
+# do not check:
+# - E501 line lengths: ruff formatter already handles them
+extend-ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# do not check unused imports in __init__.py files (they expose module features)
+"__init__.py" = ["E402"]
+
+[tool.ruff.lint.isort]
+forced-separate = ["tests"]
 
 [build-system]
 requires = ["uv_build>=0.10.2,<0.11.0"]
