@@ -40,6 +40,12 @@ uv run pytest
 uv run pytest -v --cov=sample_python_semantic_release --cov-branch --cov-report term-missing --cov-fail-under 95
 ```
 
+## Semanti release
+
+```sh
+uv run semantic-release -c releaserc.toml -v version --skip-build --no-commit --no-tag --no-changelog
+```
+
 ## How the python project was initialized
 
 ```sh

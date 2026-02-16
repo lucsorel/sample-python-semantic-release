@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-code-quality-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -18,7 +18,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - name: project checkout
+      - name: Project checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
@@ -29,15 +29,15 @@ jobs:
         with:
           enable-cache: true
 
-      - name: cache lint hooks
+      - name: Cache lint hooks
         uses: actions/cache@v4
         with:
           path: ~/.cache/pre-commit
           # cache key: Python version, hooks are specified in .pre-commit-config.yaml and configured in pyproject.toml
           key: pre-commit-4|${{ hashFiles('.python-version') }}|${{ hashFiles('.pre-commit-config.yaml') }}|${{ hashFiles('pyproject.toml') }}
 
-      - name: lint
-        run: uv run pre-commit run --show-diff-on-failure --color=always --all-files
+      - name: Lint code
+        run: uv run --frozen pre-commit run --show-diff-on-failure --color=always --all-files
 
-      - name: test
-        run: uv run pytest -v --cov=sample_python_semantic_release --cov-branch --cov-report term-missing --cov-fail-under $MIN_CODE_COVERAGE_PERCENT
+      - name: Automated tests with coverage
+        run: uv run --frozen pytest -v --cov=sample_python_semantic_release --cov-branch --cov-report term-missing --cov-fail-under $MIN_CODE_COVERAGE_PERCENT
