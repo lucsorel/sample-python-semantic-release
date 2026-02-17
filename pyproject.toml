@@ -1,6 +1,6 @@
 [project]
 name = "sample-python-semantic-release"
-version = "0.0.0"
+version = "0.1.0"
 description = "A sample python library project with Github actions workflows automating the publication of a new version in PyPI (in test PyPI, to keep PyPI sane)"
 readme = "README.md"
 requires-python = ">=3.14.3"
