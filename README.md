@@ -12,6 +12,8 @@ Expected behavior when merging a PR on the `main` branch:
   - apply a tag corresponding to the new version
   - if the commits lead to a new version, deploy on test-PyPI (to not pollute the PyPI repo with junk code)
 
+Workflow inspired by # https://python-semantic-release.readthedocs.io/en/latest/configuration/automatic-releases/github-actions.html#python-semantic-release-publish-action
+
 ## Code linting
 
 Configured by pre-commit hooks

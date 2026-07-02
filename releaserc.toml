@@ -17,11 +17,6 @@ match = "(main)"
 prerelease_token = "rc"
 prerelease = false
 
-[semantic_release.branches.1-demo-mvp]
-match = "(1-demo-mvp)"
-prerelease_token = "rc"
-prerelease = false
-
 [semantic_release.changelog]
 exclude_commit_patterns = [
     '''chore(?:\([^)]*?\))?: .+''',
